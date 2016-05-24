@@ -15,6 +15,9 @@ public class Main {
         player.chooseLocation();
         player.findItem("armor");
         player.findItem("potion");
+
+        Enemy ogre = new Enemy("Ogre", 10, 10);
+        player.battle(ogre);
     }
 
     public static String nextLine() {
