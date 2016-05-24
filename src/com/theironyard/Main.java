@@ -18,6 +18,9 @@ public class Main {
 
         Enemy ogre = new Enemy("Ogre", 10, 10);
         player.battle(ogre);
+
+        System.out.println(player);
+        System.out.println(ogre);
     }
 
     public static String nextLine() {
