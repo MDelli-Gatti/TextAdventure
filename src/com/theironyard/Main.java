@@ -21,6 +21,15 @@ public class Main {
             player = new Player();
             System.out.println("Starting new game...");
         }
+        else{
+            System.out.println("found save file");
+            System.out.println("Start new game instead [y/n]");
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("y")){
+                player = new Player();
+            }
+        }
+
         System.out.println("Welcome Traveler!");
 
         if (player.name == null) player.chooseName();
