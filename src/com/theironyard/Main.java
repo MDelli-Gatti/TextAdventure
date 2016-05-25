@@ -16,7 +16,7 @@ public class Main {
     static Player player;
 
     public static void main(String[] args) throws Exception {
-        player = loadGame();
+        player = loadGame(SAVE_FILE);
         if (player == null){
             player = new Player();
             System.out.println("Starting new game...");
@@ -47,7 +47,7 @@ public class Main {
         System.out.println(player);
         System.out.println(ogre);
 
-        saveGame();
+        saveGame(player, SAVE_FILE);
 
     }
 
@@ -60,7 +60,7 @@ public class Main {
                 }
             }
             else if (line.equals("/save")){
-                saveGame();
+                saveGame(player, SAVE_FILE);
             }
             else {
                 System.out.println("Command not found.");
@@ -73,11 +73,11 @@ public class Main {
 
     }
 
-    public static void saveGame() {
+    public static void saveGame(Player player, String fileName) {
         JsonSerializer serializer = new JsonSerializer();
         String json = serializer.include("*").serialize(player);
 
-        File f = new File(SAVE_FILE);
+        File f = new File(fileName);
         try {
             FileWriter fw = new FileWriter(f);
             fw.write(json);
@@ -86,8 +86,8 @@ public class Main {
             e.printStackTrace();
         }
     }
-    public static Player loadGame() {
-        File f = new File(SAVE_FILE);
+    public static Player loadGame(String fileName) {
+        File f = new File(fileName);
         try {
             Scanner scanner = new Scanner(f);
             scanner.useDelimiter("\\Z");
